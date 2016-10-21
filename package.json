@@ -1,0 +1,23 @@
+{
+  "name": "punch.js",
+  "version": "1.0.0",
+  "description": "A simple timeclock.",
+  "main": "punch.js",
+  "dependencies": {
+    "commander": "^2.9.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lysande/punch.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lysande/punch.js/issues"
+  },
+  "homepage": "https://github.com/Lysande/punch.js#readme"
+}
