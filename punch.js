@@ -36,46 +36,21 @@
 let app = (function () {
   "use strict";
 
-  let meta = require("./package.json");
-
-  /**
-    Discard this when it's time to add on a CLI. 
-    Let the CLI handle its own specific stuff. 
-  */
-  let dispatch = function (module) {
-
-    return function (...args) {
-      let result = module(...args);
-
-      if (result instanceof Error) 
-      {
-        process.stderr.write(result.stack);
-      } 
-      else
-      {
-        if (typeof result == "object")
-        {
-          result = JSON.stringify(result);
-        }
-        process.stdout.write(result);
-      } 
-    };
-  };
-
-
   return {
-    version: meta.version,
-    clock: dispatch(require("./lib/api/clock")),
-    log: dispatch(require("./lib/api/log"))
+    ROOT:  require("fs").realpathSync("./"),
+    version:  require("./package.json").version,
+    clock: require("./lib/clock"),
+    log: require("./lib/log"),
+    registerInterface: function (i) {
+      return require("./lib/registerInterface")(this, i);
+    }
   }; 
 
 })();
- 
-app.log(app.clock("in"), {
-  format: "CSV",
-  template: "./templates/time",
-  output: "./data/record.csv"
-});
+
+app.registerInterface(require("./interfaces/cli"));
+
+
 
 // let cli = require("commander");
 

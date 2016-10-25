@@ -1,6 +1,6 @@
-module.exports = function () {
+module.exports = function (data) {
   "use strict";
 
 
-  return "I am template";
+  return `${data.time},${data.direction},`;
 }
