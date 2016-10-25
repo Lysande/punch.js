@@ -29,6 +29,8 @@
  /**
   Will need a dispatcher to pull in and run modules, then 
   print the result to the appropriate stream.
+
+  If no data specified in logger, assume it is from stdin?
  */
 
 let app = (function () {
@@ -36,7 +38,12 @@ let app = (function () {
 
   let meta = require("./package.json");
 
+  /**
+    Discard this when it's time to add on a CLI. 
+    Let the CLI handle its own specific stuff. 
+  */
   let dispatch = function (module) {
+
     return function (...args) {
       let result = module(...args);
 
@@ -55,21 +62,45 @@ let app = (function () {
     };
   };
 
+
   return {
     version: meta.version,
-    clock: dispatch(require("./lib/api/clock"))
+    clock: dispatch(require("./lib/api/clock")),
+    log: dispatch(require("./lib/api/log"))
   }; 
 
 })();
  
+app.log(app.clock("in"), {
+  format: "CSV",
+  template: "./templates/time",
+  output: "./data/record.csv"
+});
 
+// let cli = require("commander");
 
-let cli = require("commander");
+// cli.version(app.version);
+// cli.command("clock")
+//     .option("-d", "--direction", "Direction - In or out.")
+//     .action(app.clock);
+// cli.command("log <data> [opts]")
+//     .option("-f", "--format [value]", "Specify which logger to use. Currently supports 'CSV'")
+//     // .option("-o", "--output", "Output file. Appends by default")
+//     // .option("-t", "--template")
+//     .action(function (data, options) {
 
-cli.version(app.version);
-cli.command("clock <direction>").action(app.clock);
+// console.log(data, options);
 
-cli.parse(process.argv);
+//       let opts = {
+//         format: cli.format,
+//         output: cli.output,
+//         template: cli.template
+//       };
+
+//       // app.log(opts);
+//     });
+
+// cli.parse(process.argv);
 
 
 
