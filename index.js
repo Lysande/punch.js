@@ -33,23 +33,7 @@
   If no data specified in logger, assume it is from stdin?
  */
 
-let app = (function () {
-  "use strict";
-
-  return {
-    ROOT:  require("fs").realpathSync("./"),
-    version:  require("./package.json").version,
-    clock: require("./lib/clock"),
-    log: require("./lib/log"),
-    registerInterface: function (i) {
-      return require("./lib/registerInterface")(this, i);
-    }
-  }; 
-
-})();
-
-app.registerInterface(require("./interfaces/cli"));
-
+app = require("./app");
 
 
 // let cli = require("commander");
