@@ -1,7 +1,7 @@
 {
-  "name": "punch.js",
-  "version": "1.0.0",
-  "description": "A simple timeclock.",
+  "name": "timeclock",
+  "version": "0.1.0",
+  "description": "",
   "main": "index.js",
   "dependencies": {
   },
@@ -12,12 +12,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Lysande/punch.js.git"
+    "url": "git+https://github.com/Lysande/timeclock.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Lysande/punch.js/issues"
+    "url": "https://github.com/Lysande/timeclock/issues"
   },
-  "homepage": "https://github.com/Lysande/punch.js#readme"
+  "homepage": "https://github.com/Lysande/timeclock#readme"
 }
